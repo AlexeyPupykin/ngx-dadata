@@ -3,7 +3,7 @@ import {
   ElementRef,
   EventEmitter,
   forwardRef,
-  HostListener, Inject,
+  HostListener,
   Input,
   OnChanges,
   OnInit,
@@ -19,9 +19,6 @@ import {DadataResponse} from './models/dadata-response';
 import {DadataSuggestion} from './models/suggestion';
 import {DadataConfig, DadataConfigDefault} from './dadata-config';
 import {ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {DOCUMENT} from '@angular/common';
-import {unwrapHtmlForSink} from 'safevalues';
-import {createHtml} from 'safevalues/implementation/html_impl';
 
 /*const NGX_DADATA_VALIDATOR = {
   provide: NG_VALIDATORS,
@@ -95,9 +92,7 @@ export class NgxDadataComponent implements OnInit, ControlValueAccessor, OnChang
   constructor(
     private dataService: NgxDadataService,
     private r: Renderer2,
-    private elRef: ElementRef,
-    @Inject(DOCUMENT) private document: Document,
-    ) {
+    private elRef: ElementRef) {
   }
 
   get value(): any {
@@ -197,25 +192,24 @@ export class NgxDadataComponent implements OnInit, ControlValueAccessor, OnChang
   }
 
   setFocus(id: number) {
-    const activeEl = this.document.getElementById(id + 'item');
+    const activeEl = document.getElementById(id + 'item');
     this.r.addClass(activeEl, 'active');
   }
 
   removeFocus(id: number) {
     if (id !== -1) {
-      const activeEl = this.document.getElementById(id + 'item');
+      const activeEl = document.getElementById(id + 'item');
       this.r.removeClass(activeEl, 'active');
     }
   }
 
   writeValue(value: any): void {
-    if (value !== undefined && value !== null) {
+    if (value !== undefined) {
       this.v = value;
     } else {
       this.v = '';
     }
-
-    this.r.setProperty(this.inputValue.nativeElement, 'innerHTML', unwrapHtmlForSink(createHtml(this.v)));
+    this.r.setProperty(this.inputValue.nativeElement, 'innerHTML', this.v);
   }
 
   /**
@@ -245,6 +239,7 @@ export class NgxDadataComponent implements OnInit, ControlValueAccessor, OnChang
    * @param isDisabled Disabled state flag
    */
   setDisabledState(isDisabled: boolean): void {
+    alert('disabled!');
     this.disabled = isDisabled;
   }
 }
