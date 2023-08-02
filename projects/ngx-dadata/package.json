@@ -5,7 +5,7 @@
   "repository": "https://github.com/kolkov/ngx-dadata",
   "license": "MIT",
   "private": false,
-  "description": "Angular 6+ and 13+ Dadata suggestion (подсказки) implementation",
+  "description": "Angular 6+ and 13+ DaData suggestion (подсказки) implementation",
   "peerDependencies": {
     "@angular/common": ">=13",
     "@angular/core": ">=13"

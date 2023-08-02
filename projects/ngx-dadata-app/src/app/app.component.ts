@@ -1,29 +1,35 @@
-import { Component } from '@angular/core';
-import {DadataConfig, DadataParty, DadataSuggestion, DadataType} from '@kolkov/ngx-dadata';
+import { Component } from "@angular/core";
+import {
+  DadataConfig,
+  DadataParty,
+  DadataSuggestion,
+  DadataType,
+} from "@kolkov/ngx-dadata";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: [ './app.component.scss' ]
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
-export class AppComponent  {
+export class AppComponent {
   configAddress: DadataConfig = {
-    apiKey: '2e51c5fbc1a60bd48face95951108560bf03f7d9',
+    apiKey: "2e51c5fbc1a60bd48face95951108560bf03f7d9",
     type: DadataType.address,
-    locations: [
-      {
-        city: 'Москва',
-      }
-    ]
+    // locations: [
+    //   {
+    //     city: "Москва",
+    //   },
+    // ],
+    restrictValue: true,
   };
   configFio: DadataConfig = {
-    apiKey: '2e51c5fbc1a60bd48face95951108560bf03f7d9',
+    apiKey: "2e51c5fbc1a60bd48face95951108560bf03f7d9",
     type: DadataType.fio,
   };
   configParty: DadataConfig = {
-    apiKey: '2e51c5fbc1a60bd48face95951108560bf03f7d9',
+    apiKey: "2e51c5fbc1a60bd48face95951108560bf03f7d9",
     type: DadataType.party,
-    partyAddress: 'full',
+    partyAddress: "full",
   };
 
   onPartySelect(event: DadataSuggestion) {
